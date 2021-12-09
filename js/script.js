@@ -30,7 +30,6 @@ const team = [
     image: 'barbara-ramos-graphic-designer.jpg',
   },
 ];
-
 // TEST
 // for (let i = 0; i < team.length; i++) {
 //   console.log(team[i]);
@@ -62,22 +61,25 @@ const teamContainer = document.querySelector('.team-container');
 //devo inserire tutte le card presenti nel mio array team
 for (let index = 0; index < team.length; index++) {
   const member = team [index];
-  // console.log(member);
-  // console.log(member.image);
   // aggiunge card con informazioni relativo a membro i-esimo
   createCard(member,teamContainer);
-  // teamContainer.innerHTML += `
-  // <div class="team-card">
-  //   <div class="card-image">
-  //     <img
-  //       src="img/${member.image}"
-  //       alt="${member.name}"
-  //     />
-  //   </div>
-  //   <div class="card-text">
-  //     <h3>${member.name}</h3>
-  //     <p>${member.role}</p>
-  //   </div>
-  // </div>
-  // `;
 }
+//ottengo bottone per invio del form
+const button = document.getElementById('addMemberButton');
+button.addEventListener('click',function() {
+  //ottengo input relativo al nome da inserire
+  const inputName = document.getElementById('name').value;
+  //ottengo input relativo al ruole da inserire
+  const inputRole = document.getElementById('role').value;
+  //ottengo input relativo all'immagine da inserire
+  const inputImage = document.getElementById('image').value;
+  // console.log(inputName,inputRole,inputImage);
+  const newMember = {
+    name: inputName,
+    role: inputRole,
+    image: inputImage
+  };
+  team.push(newMember);
+  // console.log(team);
+  createCard (newMember,teamContainer);
+});
